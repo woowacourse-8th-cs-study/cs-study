@@ -4,7 +4,7 @@ from __future__ import annotations
 import sys
 from pathlib import Path
 
-from automation_common import README_FILE, load_data, markdown_link_or_pending, material_link, presenter_link, thumbnail_link, topic_sort_key
+from automation_common import README_FILE, category_label, load_data, markdown_link_or_pending, material_link, presenter_link, thumbnail_link, topic_sort_key
 
 
 START = "<!-- AUTO-GENERATED:TOPICS:START -->"
@@ -15,24 +15,13 @@ def render_topics() -> str:
     topics = sorted(load_data().get("topics") or [], key=topic_sort_key)
     lines = [
         START,
-        "| 회차 | 발표일 | 카테고리 | 발표자 | 발표 주제 | 발표 자료 | 발표 영상 | Discussion |",
-        "|---|---|---|---|---|---|---|---|",
+        "| 발표 자료(클릭 시 확인 가능) | 발표 정보 |",
+        "|---|---|",
     ]
     if not topics:
-        lines.append("| - | - | - | - | 등록된 발표가 없습니다. | - | - | - |")
+        lines.append("| 등록된 발표가 없습니다. | - |")
     for topic in topics:
-        lines.append(
-            "| {round}회차 | {date} | {category} | {presenter} | {title} | {material} | {youtube} | {discussion} |".format(
-                round=topic["round"],
-                date=topic["date"],
-                category=topic["category"],
-                presenter=presenter_link(topic["presenter"]),
-                title=escape_table_cell(topic["title"]),
-                material=render_material(topic),
-                youtube=markdown_link_or_pending(topic.get("youtube_url", ""), "발표 영상"),
-                discussion=f"[바로가기]({topic['discussion_url']})",
-            )
-        )
+        lines.append(f"| {render_material(topic)} | {render_info(topic)} |")
     lines.append(END)
     return "\n".join(lines)
 
@@ -43,8 +32,21 @@ def render_material(topic: dict) -> str:
         return "업로드 예정"
     thumbnail = thumbnail_link(topic)
     if thumbnail:
-        return f'<a href="{link}"><img src="{thumbnail}" width="180"/></a>'
+        return f'<div align="center"><a href="{link}"><img src="{thumbnail}" width="100%"/></a></div>'
     return f"[발표 자료]({link})"
+
+
+def render_info(topic: dict) -> str:
+    items = [
+        f"**회차:** {topic['round']}회차",
+        f"**발표일:** {topic['date']}",
+        f"**카테고리:** {category_label(topic['category'])}",
+        f"**발표자:** {presenter_link(topic['presenter'])}",
+        f"**발표 주제:** {escape_table_cell(topic['title'])}",
+        f"**Discussion:** [바로가기]({topic['discussion_url']})",
+        f"**발표 영상:** {markdown_link_or_pending(topic.get('youtube_url', ''), '발표 영상')}",
+    ]
+    return "<br>".join(items)
 
 
 def escape_table_cell(value: str) -> str:

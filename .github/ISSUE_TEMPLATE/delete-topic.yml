@@ -1,0 +1,17 @@
+name: 발표 삭제
+description: 잘못 등록된 발표의 Discussion, README 항목, PDF, 썸네일을 삭제합니다
+title: "[삭제] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        잘못 등록된 발표를 삭제함. Discussion 번호만 입력하면 연결된 Discussion, README 항목, PDF, 썸네일이 함께 제거됨.
+
+  - type: input
+    id: discussion
+    attributes:
+      label: Discussion 번호
+      description: 삭제할 발표의 Discussion 번호만 입력해주세요. 예) 12
+      placeholder: "12"
+    validations:
+      required: true

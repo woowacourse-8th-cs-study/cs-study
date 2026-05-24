@@ -31,6 +31,15 @@ PRESENTERS = {
     "피즈": "wontop02",
 }
 
+PRESENTER_LABELS = {
+    "스타크": "stark",
+    "로지": "logi",
+    "초록": "chorok",
+    "러키": "lucky",
+    "도우너": "douner",
+    "피즈": "fizz",
+}
+
 CATEGORIES = [
     "Network",
     "Database",
@@ -43,6 +52,19 @@ CATEGORIES = [
     "Security",
     "Infra",
 ]
+
+CATEGORY_EMOJIS = {
+    "Network": "🌐",
+    "Database": "💾",
+    "Operating System": "⚙️",
+    "Data Structure": "🧱",
+    "Algorithm": "🧮",
+    "Computer Architecture": "🖥️",
+    "Spring": "🌱",
+    "Java": "☕",
+    "Security": "🔐",
+    "Infra": "🏗️",
+}
 
 
 def parse_issue_body(body: str) -> dict[str, str]:
@@ -224,6 +246,15 @@ def presenter_link(name: str) -> str:
     return f"[{name}](https://github.com/{login})" if login else name
 
 
+def presenter_label(name: str) -> str:
+    return PRESENTER_LABELS.get(name, "")
+
+
+def category_label(name: str) -> str:
+    emoji = CATEGORY_EMOJIS.get(name, "")
+    return f"{emoji} {name}" if emoji else name
+
+
 def markdown_link_or_pending(url: str, label: str) -> str:
     return f"[{label}]({url})" if url else "업로드 예정"
 
@@ -246,7 +277,7 @@ def render_discussion_body(topic: dict) -> str:
         topic["presenter"],
         "",
         "## 🗂️ 카테고리",
-        topic["category"],
+        category_label(topic["category"]),
         "",
         "## 📚 발표 자료",
         markdown_link_or_pending(material_link(topic), "발표 자료"),
@@ -367,6 +398,21 @@ def get_discussion(discussion_id: str) -> dict:
     if not discussion:
         fail("기존 Discussion을 찾을 수 없습니다")
     return discussion
+
+
+def delete_discussion(discussion_id: str) -> None:
+    graphql(
+        """
+        mutation($discussionId: ID!) {
+          deleteDiscussion(input: {id: $discussionId}) {
+            discussion {
+              id
+            }
+          }
+        }
+        """,
+        {"discussionId": discussion_id},
+    )
 
 
 def update_discussion(discussion_id: str, title: str, body: str) -> dict:

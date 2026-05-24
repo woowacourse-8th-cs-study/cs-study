@@ -38,9 +38,9 @@
 ## 📚 발표 자료 아카이브
 
 <!-- AUTO-GENERATED:TOPICS:START -->
-| 회차 | 발표일 | 카테고리 | 발표자 | 발표 주제 | 발표 자료 | 발표 영상 | Discussion |
-|---|---|---|---|---|---|---|---|
-| 1회차 | 2026-06-01 | Database | [스타크](https://github.com/MODUGGAGI) | DB 인덱스는 왜 빠르고, 언제 느려질까? | 업로드 예정 | 업로드 예정 | [바로가기](https://github.com/orgs/woowacourse-8th-cs-study/discussions/6) |
+| 발표 자료(클릭 시 확인 가능) | 발표 정보 |
+|---|---|
+| 업로드 예정 | **회차:** 1회차<br>**발표일:** 2026-06-01<br>**카테고리:** 💾 Database<br>**발표자:** [스타크](https://github.com/MODUGGAGI)<br>**발표 주제:** DB 인덱스는 왜 빠르고, 언제 느려질까?<br>**Discussion:** [바로가기](https://github.com/orgs/woowacourse-8th-cs-study/discussions/6)<br>**발표 영상:** 업로드 예정 |
 <!-- AUTO-GENERATED:TOPICS:END -->
 
 ---
@@ -72,3 +72,7 @@
 - **자료/영상 수정**: `Issues` → `New issue` → `발표 자료/영상 수정`
   - Discussion URL 또는 번호를 입력하고, 추가할 발표 자료 PDF나 유튜브 URL만 채우면 됨
   - 수정하면 기존 Discussion 본문과 README 발표 자료 아카이브가 자동으로 갱신
+
+- **발표 삭제**: `Issues` → `New issue` → `발표 삭제`
+  - Discussion 번호만 입력하면 됨
+  - 삭제하면 연결된 Discussion, README 항목, PDF, 썸네일이 함께 제거

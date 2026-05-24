@@ -1,4 +1,4 @@
-name: Process Topic Registration
+name: Process Topic Delete
 
 on:
   issues:
@@ -16,7 +16,7 @@ concurrency:
 jobs:
   process:
     if: |
-      startsWith(github.event.issue.title, '[등록]') &&
+      startsWith(github.event.issue.title, '[삭제]') &&
       (github.event.issue.author_association == 'OWNER' ||
        github.event.issue.author_association == 'MEMBER' ||
        github.event.issue.author_association == 'COLLABORATOR' ||
@@ -33,20 +33,15 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Install system deps
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y poppler-utils
-
       - name: Install Python deps
         run: pip install pyyaml
 
-      - name: Process registration issue
+      - name: Process delete issue
         id: process
         env:
           ISSUE_BODY: ${{ github.event.issue.body }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: python .automation/scripts/process_register_issue.py
+        run: python .automation/scripts/process_delete_issue.py
 
       - name: Commit and push
         id: commit
@@ -57,13 +52,13 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add .automation/topics.yml README.md
-          [ -d docs ] && git add docs/
-          [ -d images ] && git add images/
+          [ -d docs ] && git add -A docs/
+          [ -d images ] && git add -A images/
           if git diff --cached --quiet; then
             echo "committed=false" >> "$GITHUB_OUTPUT"
             exit 0
           fi
-          git commit -m "docs: ${ROUND}회차 발표 주제 등록 (${PRESENTER})"
+          git commit -m "docs: ${ROUND}회차 발표 삭제 (${PRESENTER})"
           git push
           echo "committed=true" >> "$GITHUB_OUTPUT"
 
@@ -73,35 +68,32 @@ jobs:
         env:
           ROUND: ${{ steps.process.outputs.round }}
           PRESENTER: ${{ steps.process.outputs.presenter }}
-          PRESENTER_LABEL: ${{ steps.process.outputs.presenter_label }}
           TITLE: ${{ steps.process.outputs.title }}
-          DISCUSSION_URL: ${{ steps.process.outputs.discussion_url }}
+          DISCUSSION_NUMBER: ${{ steps.process.outputs.discussion_number }}
+          MATERIAL_PATH: ${{ steps.process.outputs.material_path }}
+          THUMBNAIL_PATH: ${{ steps.process.outputs.thumbnail_path }}
         with:
           script: |
-            const round = process.env.ROUND;
-            const presenter = process.env.PRESENTER;
-            const presenterLabel = process.env.PRESENTER_LABEL;
-            const title = process.env.TITLE;
-            const discussionUrl = process.env.DISCUSSION_URL;
-            if (presenterLabel) {
-              await github.rest.issues.addLabels({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                issue_number: context.issue.number,
-                labels: [presenterLabel]
-              });
-            }
+            const lines = [
+              "삭제 완료되었습니다.",
+              "",
+              `- Discussion: #${process.env.DISCUSSION_NUMBER}`,
+              `- 발표: ${process.env.ROUND}회차 - ${process.env.PRESENTER} / ${process.env.TITLE}`,
+              "- README 발표 자료 아카이브가 갱신되었습니다."
+            ];
+            if (process.env.MATERIAL_PATH) lines.push(`- 삭제된 PDF: \`${process.env.MATERIAL_PATH}\``);
+            if (process.env.THUMBNAIL_PATH) lines.push(`- 삭제된 썸네일: \`${process.env.THUMBNAIL_PATH}\``);
             await github.rest.issues.createComment({
               owner: context.repo.owner,
               repo: context.repo.repo,
               issue_number: context.issue.number,
-              body: `등록 완료되었습니다.\n\n- Discussion: ${discussionUrl}\n- README 발표 목록이 갱신되었습니다.`
+              body: lines.join("\n")
             });
             await github.rest.issues.update({
               owner: context.repo.owner,
               repo: context.repo.repo,
               issue_number: context.issue.number,
-              title: `[등록] ${round}회차 - ${presenter} / ${title}`,
+              title: `[삭제] ${process.env.ROUND}회차 - ${process.env.PRESENTER} / ${process.env.TITLE}`,
               state: 'closed',
               state_reason: 'completed'
             });
