@@ -71,7 +71,8 @@
 
 - **자료/영상 수정**: `Issues` → `New issue` → `발표 자료/영상 수정`
   - Discussion URL 또는 번호를 입력하고, 추가할 발표 자료 PDF나 유튜브 URL만 채우면 됨
-  - 수정하면 기존 Discussion 본문과 README 발표 자료 아카이브가 자동으로 갱신
+  - 수정하면 README 발표 자료 아카이브가 자동으로 갱신
+  - Discussion 본문은 필요한 경우 직접 수정
 
 - **발표 삭제**: `Issues` → `New issue` → `발표 삭제`
   - Discussion 번호만 입력하면 됨

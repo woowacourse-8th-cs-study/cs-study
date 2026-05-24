@@ -8,14 +8,11 @@ from automation_common import (
     discussion_number_from,
     extract_pdf_url,
     fail,
-    get_discussion,
     load_data,
-    patch_discussion_links,
     parse_issue_body,
     save_pdf_attachment,
     save_data,
     set_output,
-    update_discussion,
     validate_url,
 )
 from generate_thumbnail import main as generate_thumbnail
@@ -42,11 +39,6 @@ def main() -> int:
     if youtube_url:
         topic["youtube_url"] = youtube_url
 
-    current_discussion = get_discussion(topic["discussion_id"])
-    discussion_title = f"[{topic['round']}회차] {topic['title']}"
-    discussion_body = patch_discussion_links(current_discussion["body"], topic)
-    discussion = update_discussion(topic["discussion_id"], discussion_title, discussion_body)
-    topic["discussion_url"] = discussion["url"]
     save_data(data)
     generate_thumbnail()
     generate_readme()
@@ -54,8 +46,8 @@ def main() -> int:
     set_output("round", str(topic["round"]))
     set_output("presenter", topic["presenter"])
     set_output("title", topic["title"])
-    set_output("discussion_url", discussion["url"])
-    print(f"updated discussion: {discussion['url']}")
+    set_output("discussion_url", topic["discussion_url"])
+    print(f"updated topic links: {topic['discussion_url']}")
     return 0
 
 
