@@ -38,9 +38,9 @@
 ## 📚 발표 자료 아카이브
 
 <!-- AUTO-GENERATED:TOPICS:START -->
-| 회차 | 발표일 | 카테고리 | 발표자 | 발표 주제 | 발표 자료 | 발표 영상 | Discussion |
-|---|---|---|---|---|---|---|---|
-| - | - | - | - | 등록된 발표가 없습니다. | - | - | - |
+| 발표 자료(클릭 시 확인 가능) | 발표 정보 |
+|---|---|
+| 등록된 발표가 없습니다. | - |
 <!-- AUTO-GENERATED:TOPICS:END -->
 
 ---
@@ -72,3 +72,7 @@
 - **자료/영상 수정**: `Issues` → `New issue` → `발표 자료/영상 수정`
   - Discussion URL 또는 번호를 입력하고, 추가할 발표 자료 PDF나 유튜브 URL만 채우면 됨
   - 수정하면 기존 Discussion 본문과 README 발표 자료 아카이브가 자동으로 갱신
+
+- **발표 삭제**: `Issues` → `New issue` → `발표 삭제`
+  - Discussion 번호만 입력하면 됨
+  - 삭제하면 연결된 Discussion, README 항목, PDF, 썸네일이 함께 제거

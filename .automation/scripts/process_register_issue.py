@@ -10,6 +10,7 @@ from automation_common import (
     fail,
     load_data,
     parse_issue_body,
+    presenter_label,
     render_discussion_body,
     repository_info,
     save_pdf_attachment,
@@ -77,6 +78,7 @@ def main() -> int:
 
     set_output("round", str(round_no))
     set_output("presenter", presenter)
+    set_output("presenter_label", presenter_label(presenter))
     set_output("title", title)
     set_output("discussion_url", discussion["url"])
     print(f"created discussion: {discussion['url']}")
