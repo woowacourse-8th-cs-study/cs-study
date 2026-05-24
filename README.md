@@ -40,7 +40,7 @@
 <!-- AUTO-GENERATED:TOPICS:START -->
 | 회차 | 발표일 | 카테고리 | 발표자 | 발표 주제 | 발표 자료 | 발표 영상 | Discussion |
 |---|---|---|---|---|---|---|---|
-| - | - | - | - | 등록된 발표가 없습니다. | - | - | - |
+| 1회차 | 2026-06-01 | Database | [스타크](https://github.com/MODUGGAGI) | DB 인덱스는 왜 빠르고, 언제 느려질까? | 업로드 예정 | 업로드 예정 | [바로가기](https://github.com/orgs/woowacourse-8th-cs-study/discussions/6) |
 <!-- AUTO-GENERATED:TOPICS:END -->
 
 ---
