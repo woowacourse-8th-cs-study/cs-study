@@ -64,10 +64,11 @@
 
 - **주제 등록**: `Issues` → `New issue` → `발표 주제 등록`
   - 필수: 회차, 발표일, 발표자, 카테고리, 발표 주제
-  - 선택: 발표 자료 URL, 유튜브 URL, 핵심 개념 요약, 미션과의 연결, 참고 자료
+  - 선택: 발표 자료 PDF, 유튜브 URL, 핵심 개념 요약, 미션과의 연결, 참고 자료
   - 등록하면 GitHub Discussion과 README 발표 자료 아카이브가 자동으로 생성
+  - 발표 자료 PDF를 첨부하면 첫 페이지 썸네일이 README에 표시되고, 클릭 시 발표 자료로 이동
   - 카테고리는 GitHub Discussions에도 같은 이름으로 준비되어 있어야 함
 
 - **자료/영상 수정**: `Issues` → `New issue` → `발표 자료/영상 수정`
-  - Discussion URL 또는 번호를 입력하고, 추가할 발표 자료 URL이나 유튜브 URL만 채우면 됨
+  - Discussion URL 또는 번호를 입력하고, 추가할 발표 자료 PDF나 유튜브 URL만 채우면 됨
   - 수정하면 기존 Discussion 본문과 README 발표 자료 아카이브가 자동으로 갱신

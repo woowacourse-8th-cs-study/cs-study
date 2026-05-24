@@ -65,12 +65,12 @@ body:
     validations:
       required: true
 
-  - type: input
-    id: material_url
+  - type: textarea
+    id: material_pdf
     attributes:
-      label: 발표 자료 URL
-      description: 선택 항목입니다. 자료가 아직 없다면 비워두세요.
-      placeholder: https://...
+      label: 발표 자료 PDF
+      description: 선택 항목입니다. PDF 파일을 드래그&드롭하면 README에 썸네일이 자동 생성됩니다.
+      placeholder: 여기에 PDF 파일을 드롭하세요.
 
   - type: input
     id: youtube_url

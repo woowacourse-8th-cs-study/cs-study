@@ -6,11 +6,13 @@ import sys
 
 from automation_common import (
     create_discussion,
+    extract_pdf_url,
     fail,
     load_data,
     parse_issue_body,
     render_discussion_body,
     repository_info,
+    save_pdf_attachment,
     save_data,
     set_output,
     validate_category,
@@ -20,6 +22,7 @@ from automation_common import (
     validate_round,
     validate_url,
 )
+from generate_thumbnail import main as generate_thumbnail
 from generate_readme import main as generate_readme
 
 
@@ -30,7 +33,7 @@ def main() -> int:
     presenter = validate_presenter(sections.get("발표자", ""))
     category = validate_category(sections.get("카테고리", ""))
     title = validate_required(sections.get("발표 주제", ""), "발표 주제")
-    material_url = validate_url(sections.get("발표 자료 URL", ""), "발표 자료 URL")
+    pdf_url = extract_pdf_url(sections.get("발표 자료 PDF", ""))
     youtube_url = validate_url(sections.get("유튜브 URL", ""), "유튜브 URL")
 
     data = load_data()
@@ -49,12 +52,15 @@ def main() -> int:
         "presenter": presenter,
         "category": category,
         "title": title,
-        "material_url": material_url,
         "youtube_url": youtube_url,
         "summary": sections.get("핵심 개념 요약", ""),
         "mission": sections.get("미션과의 연결", ""),
         "references": sections.get("참고 자료", ""),
     }
+    material_path, thumbnail_path = save_pdf_attachment(pdf_url, round_no, presenter, title)
+    if material_path:
+        topic["material_path"] = material_path
+        topic["thumbnail_path"] = thumbnail_path
     discussion_title = f"[{round_no}회차] {title}"
     discussion = create_discussion(repository_id, category_id, discussion_title, render_discussion_body(topic))
     topic.update(
@@ -66,6 +72,7 @@ def main() -> int:
     )
     data["topics"].append(topic)
     save_data(data)
+    generate_thumbnail()
     generate_readme()
 
     set_output("round", str(round_no))
