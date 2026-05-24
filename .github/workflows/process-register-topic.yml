@@ -2,16 +2,12 @@ name: Process Topic Registration
 
 on:
   issues:
-    types: [opened]
+    types: [opened, reopened]
 
 permissions:
   contents: write
   discussions: write
   issues: write
-
-concurrency:
-  group: topic-automation
-  cancel-in-progress: false
 
 jobs:
   process:
@@ -21,6 +17,9 @@ jobs:
        github.event.issue.author_association == 'MEMBER' ||
        github.event.issue.author_association == 'COLLABORATOR' ||
        github.event.issue.author_association == 'CONTRIBUTOR')
+    concurrency:
+      group: topic-automation
+      cancel-in-progress: false
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
