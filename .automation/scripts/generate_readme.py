@@ -4,7 +4,7 @@ from __future__ import annotations
 import sys
 from pathlib import Path
 
-from automation_common import README_FILE, load_data, markdown_link_or_pending, presenter_link, topic_sort_key
+from automation_common import README_FILE, load_data, markdown_link_or_pending, material_link, presenter_link, thumbnail_link, topic_sort_key
 
 
 START = "<!-- AUTO-GENERATED:TOPICS:START -->"
@@ -28,13 +28,23 @@ def render_topics() -> str:
                 category=topic["category"],
                 presenter=presenter_link(topic["presenter"]),
                 title=escape_table_cell(topic["title"]),
-                material=markdown_link_or_pending(topic.get("material_url", ""), "발표 자료"),
+                material=render_material(topic),
                 youtube=markdown_link_or_pending(topic.get("youtube_url", ""), "발표 영상"),
                 discussion=f"[바로가기]({topic['discussion_url']})",
             )
         )
     lines.append(END)
     return "\n".join(lines)
+
+
+def render_material(topic: dict) -> str:
+    link = material_link(topic)
+    if not link:
+        return "업로드 예정"
+    thumbnail = thumbnail_link(topic)
+    if thumbnail:
+        return f'<a href="{link}"><img src="{thumbnail}" width="180"/></a>'
+    return f"[발표 자료]({link})"
 
 
 def escape_table_cell(value: str) -> str:

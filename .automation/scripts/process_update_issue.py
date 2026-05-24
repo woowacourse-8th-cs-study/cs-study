@@ -6,33 +6,38 @@ import sys
 
 from automation_common import (
     discussion_number_from,
+    extract_pdf_url,
     fail,
     load_data,
     parse_issue_body,
     render_discussion_body,
+    save_pdf_attachment,
     save_data,
     set_output,
     update_discussion,
     validate_url,
 )
+from generate_thumbnail import main as generate_thumbnail
 from generate_readme import main as generate_readme
 
 
 def main() -> int:
     sections = parse_issue_body(os.environ.get("ISSUE_BODY", ""))
     discussion_number = discussion_number_from(sections.get("Discussion URL 또는 번호", ""))
-    material_url = validate_url(sections.get("발표 자료 URL", ""), "발표 자료 URL")
+    pdf_url = extract_pdf_url(sections.get("발표 자료 PDF", ""))
     youtube_url = validate_url(sections.get("유튜브 URL", ""), "유튜브 URL")
-    if not material_url and not youtube_url:
-        fail("발표 자료 URL 또는 유튜브 URL 중 하나 이상을 입력해야 합니다")
+    if not pdf_url and not youtube_url:
+        fail("발표 자료 PDF 또는 유튜브 URL 중 하나 이상을 입력해야 합니다")
 
     data = load_data()
     topic = next((item for item in data["topics"] if int(item["discussion_number"]) == discussion_number), None)
     if topic is None:
         fail(f"Discussion #{discussion_number}에 해당하는 자동화 데이터를 찾을 수 없습니다")
 
-    if material_url:
-        topic["material_url"] = material_url
+    if pdf_url:
+        material_path, thumbnail_path = save_pdf_attachment(pdf_url, int(topic["round"]), topic["presenter"], topic["title"])
+        topic["material_path"] = material_path
+        topic["thumbnail_path"] = thumbnail_path
     if youtube_url:
         topic["youtube_url"] = youtube_url
 
@@ -40,6 +45,7 @@ def main() -> int:
     discussion = update_discussion(topic["discussion_id"], discussion_title, render_discussion_body(topic))
     topic["discussion_url"] = discussion["url"]
     save_data(data)
+    generate_thumbnail()
     generate_readme()
 
     set_output("round", str(topic["round"]))
