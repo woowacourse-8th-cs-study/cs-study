@@ -32,7 +32,7 @@ def render_material(topic: dict) -> str:
         return "업로드 예정"
     thumbnail = thumbnail_link(topic)
     if thumbnail:
-        return f'<div align="center"><a href="{link}"><img src="{thumbnail}" width="100%"/></a></div>'
+        return f'<div align="center"><a href="{link}"><img src="{thumbnail}" width="300"/></a></div>'
     return f"[발표 자료]({link})"
 
 
