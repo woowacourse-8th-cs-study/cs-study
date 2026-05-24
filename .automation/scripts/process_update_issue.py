@@ -8,9 +8,10 @@ from automation_common import (
     discussion_number_from,
     extract_pdf_url,
     fail,
+    get_discussion,
     load_data,
+    patch_discussion_links,
     parse_issue_body,
-    render_discussion_body,
     save_pdf_attachment,
     save_data,
     set_output,
@@ -41,8 +42,10 @@ def main() -> int:
     if youtube_url:
         topic["youtube_url"] = youtube_url
 
+    current_discussion = get_discussion(topic["discussion_id"])
     discussion_title = f"[{topic['round']}회차] {topic['title']}"
-    discussion = update_discussion(topic["discussion_id"], discussion_title, render_discussion_body(topic))
+    discussion_body = patch_discussion_links(current_discussion["body"], topic)
+    discussion = update_discussion(topic["discussion_id"], discussion_title, discussion_body)
     topic["discussion_url"] = discussion["url"]
     save_data(data)
     generate_thumbnail()

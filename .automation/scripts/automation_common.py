@@ -273,6 +273,19 @@ def render_discussion_body(topic: dict) -> str:
     return "\n".join(lines)
 
 
+def patch_discussion_links(body: str, topic: dict) -> str:
+    body = replace_markdown_section(body, "📚 발표 자료", markdown_link_or_pending(material_link(topic), "발표 자료"))
+    return replace_markdown_section(body, "🎥 발표 영상", markdown_link_or_pending(topic.get("youtube_url", ""), "발표 영상"))
+
+
+def replace_markdown_section(body: str, heading: str, replacement: str) -> str:
+    marker = f"## {heading}"
+    pattern = re.compile(rf"(^##\s+{re.escape(heading)}\s*\n)(.*?)(?=^##\s+|\Z)", re.MULTILINE | re.DOTALL)
+    if pattern.search(body):
+        return pattern.sub(lambda match: match.group(1) + replacement.rstrip() + "\n\n", body, count=1)
+    return body.rstrip() + f"\n\n{marker}\n{replacement.rstrip()}\n"
+
+
 def graphql(query: str, variables: dict) -> dict:
     token = os.environ.get("GITHUB_TOKEN")
     if not token:
@@ -331,6 +344,29 @@ def create_discussion(repository_id: str, category_id: str, title: str, body: st
         {"repositoryId": repository_id, "categoryId": category_id, "title": title, "body": body},
     )
     return data["createDiscussion"]["discussion"]
+
+
+def get_discussion(discussion_id: str) -> dict:
+    data = graphql(
+        """
+        query($discussionId: ID!) {
+          node(id: $discussionId) {
+            ... on Discussion {
+              id
+              number
+              url
+              title
+              body
+            }
+          }
+        }
+        """,
+        {"discussionId": discussion_id},
+    )
+    discussion = data.get("node")
+    if not discussion:
+        fail("기존 Discussion을 찾을 수 없습니다")
+    return discussion
 
 
 def update_discussion(discussion_id: str, title: str, body: str) -> dict:
