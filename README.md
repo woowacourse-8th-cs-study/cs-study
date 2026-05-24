@@ -40,7 +40,7 @@
 <!-- AUTO-GENERATED:TOPICS:START -->
 | 발표 자료(클릭 시 확인 가능) | 발표 정보 |
 |---|---|
-| 등록된 발표가 없습니다. | - |
+| 업로드 예정 | **회차:** 1회차<br>**발표일:** 2026-06-01<br>**카테고리:** 💾 Database<br>**발표자:** [스타크](https://github.com/MODUGGAGI)<br>**발표 주제:** DB 인덱스는 왜 빠르고, 언제 느려질까? - MySQL InnoDB의 B-Tree 구조와 UUID 기본 키 실험으로 이해하기<br>**Discussion:** [바로가기](https://github.com/orgs/woowacourse-8th-cs-study/discussions/12)<br>**발표 영상:** 업로드 예정 |
 <!-- AUTO-GENERATED:TOPICS:END -->
 
 ---
