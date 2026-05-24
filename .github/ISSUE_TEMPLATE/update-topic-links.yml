@@ -1,0 +1,31 @@
+name: 발표 자료/영상 수정
+description: 이미 등록된 발표의 발표 자료 URL 또는 유튜브 URL을 추가하거나 갱신합니다
+title: "[수정] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        등록된 발표의 자료/영상 링크를 수정합니다. Discussion URL 또는 번호를 입력하고, 갱신할 링크만 채워주세요.
+
+  - type: input
+    id: discussion
+    attributes:
+      label: Discussion URL 또는 번호
+      description: 예) https://github.com/orgs/woowacourse-8th-cs-study/discussions/2 또는 2
+      placeholder: "2"
+    validations:
+      required: true
+
+  - type: input
+    id: material_url
+    attributes:
+      label: 발표 자료 URL
+      description: 비워두면 기존 값을 유지합니다.
+      placeholder: https://...
+
+  - type: input
+    id: youtube_url
+    attributes:
+      label: 유튜브 URL
+      description: 비워두면 기존 값을 유지합니다.
+      placeholder: https://youtube.com/...

@@ -1,0 +1,109 @@
+name: Process Topic Link Update
+
+on:
+  issues:
+    types: [opened]
+
+permissions:
+  contents: write
+  discussions: write
+  issues: write
+
+concurrency:
+  group: topic-automation
+  cancel-in-progress: false
+
+jobs:
+  process:
+    if: |
+      startsWith(github.event.issue.title, '[수정]') &&
+      (github.event.issue.author_association == 'OWNER' ||
+       github.event.issue.author_association == 'MEMBER' ||
+       github.event.issue.author_association == 'COLLABORATOR' ||
+       github.event.issue.author_association == 'CONTRIBUTOR')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install Python deps
+        run: pip install pyyaml
+
+      - name: Process update issue
+        id: process
+        env:
+          ISSUE_BODY: ${{ github.event.issue.body }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python .automation/scripts/process_update_issue.py
+
+      - name: Commit and push
+        id: commit
+        env:
+          ROUND: ${{ steps.process.outputs.round }}
+          PRESENTER: ${{ steps.process.outputs.presenter }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add .automation/topics.yml README.md
+          if git diff --cached --quiet; then
+            echo "committed=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          git commit -m "docs: ${ROUND}회차 발표 링크 수정 (${PRESENTER})"
+          git push
+          echo "committed=true" >> "$GITHUB_OUTPUT"
+
+      - name: Comment success and close
+        if: success()
+        uses: actions/github-script@v7
+        env:
+          ROUND: ${{ steps.process.outputs.round }}
+          PRESENTER: ${{ steps.process.outputs.presenter }}
+          TITLE: ${{ steps.process.outputs.title }}
+          DISCUSSION_URL: ${{ steps.process.outputs.discussion_url }}
+        with:
+          script: |
+            const round = process.env.ROUND;
+            const presenter = process.env.PRESENTER;
+            const title = process.env.TITLE;
+            const discussionUrl = process.env.DISCUSSION_URL;
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body: `수정 완료되었습니다.\n\n- Discussion: ${discussionUrl}\n- README 발표 목록이 갱신되었습니다.`
+            });
+            await github.rest.issues.update({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              title: `[수정] ${round}회차 - ${presenter} / ${title}`,
+              state: 'closed',
+              state_reason: 'completed'
+            });
+
+      - name: Comment failure
+        if: failure()
+        uses: actions/github-script@v7
+        env:
+          ERROR_MSG: ${{ steps.process.outputs.error }}
+        with:
+          script: |
+            const errorMsg = process.env.ERROR_MSG || '';
+            const runUrl = `${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`;
+            const body = errorMsg
+              ? `처리 중 오류가 발생했습니다.\n\n> ${errorMsg.replace(/\n/g, '\n> ')}\n\n[워크플로 로그](${runUrl})에서 상세 내용을 확인할 수 있습니다.`
+              : `처리 중 오류가 발생했습니다. [워크플로 로그](${runUrl})를 확인해주세요.`;
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body
+            });
