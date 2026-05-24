@@ -1,0 +1,98 @@
+name: 발표 주제 등록
+description: 발표 주제를 등록하면 GitHub Discussion과 README 발표 목록이 자동으로 생성됩니다
+title: "[등록] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        발표 주제를 등록합니다. 이슈를 제출하면 자동으로 Discussion이 생성되고 README 발표 목록이 갱신됩니다.
+
+  - type: input
+    id: round
+    attributes:
+      label: 회차
+      description: 숫자만 입력해주세요. 예) 2
+      placeholder: "2"
+    validations:
+      required: true
+
+  - type: input
+    id: date
+    attributes:
+      label: 발표일
+      description: YYYY-MM-DD 형식으로 입력해주세요.
+      placeholder: "2026-05-25"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: presenter
+    attributes:
+      label: 발표자
+      options:
+        - 스타크
+        - 로지
+        - 초록
+        - 러키
+        - 도우너
+        - 피즈
+    validations:
+      required: true
+
+  - type: dropdown
+    id: category
+    attributes:
+      label: 카테고리
+      options:
+        - Network
+        - Database
+        - Operating System
+        - Data Structure
+        - Algorithm
+        - Computer Architecture
+        - Spring
+        - Java
+        - Security
+        - Infra
+    validations:
+      required: true
+
+  - type: input
+    id: title
+    attributes:
+      label: 발표 주제
+      placeholder: DB 인덱스는 왜 빠르고, 언제 느려질까?
+    validations:
+      required: true
+
+  - type: input
+    id: material_url
+    attributes:
+      label: 발표 자료 URL
+      description: 선택 항목입니다. 자료가 아직 없다면 비워두세요.
+      placeholder: https://...
+
+  - type: input
+    id: youtube_url
+    attributes:
+      label: 유튜브 URL
+      description: 선택 항목입니다. 영상이 아직 없다면 비워두세요.
+      placeholder: https://youtube.com/...
+
+  - type: textarea
+    id: summary
+    attributes:
+      label: 핵심 개념 요약
+      description: 선택 항목입니다. 비워두면 Discussion에 작성 예정으로 표시됩니다.
+
+  - type: textarea
+    id: mission
+    attributes:
+      label: 미션과의 연결
+      description: 선택 항목입니다. 비워두면 Discussion에 작성 예정으로 표시됩니다.
+
+  - type: textarea
+    id: references
+    attributes:
+      label: 참고 자료
+      description: 선택 항목입니다. 비워두면 Discussion에 작성 예정으로 표시됩니다.
