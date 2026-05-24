@@ -15,7 +15,16 @@
 ---
 
 ## 🎯 학습 범위
-`Network` `Database` `Operating System` `Data Structure` `Algorithm` `Computer Architecture` `Spring` `Java` `Security` `Infra`
+- 🌐 Network
+- 💾 Database
+- ⚙️ Operating System
+- 🧱 Data Structure
+- 🧮 Algorithm
+- 🖥️ Computer Architecture
+- 🌱 Spring
+- ☕ Java
+- 🔐 Security
+- 🏗️ Infra
 
 ---
 
