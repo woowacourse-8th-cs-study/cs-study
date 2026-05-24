@@ -40,7 +40,7 @@
 <!-- AUTO-GENERATED:TOPICS:START -->
 | 발표 자료(클릭 시 확인 가능) | 발표 정보 |
 |---|---|
-| <div align="center"><a href="https://github.com/woowacourse-8th-cs-study/cs-study/blob/main/docs/round1/%5B%EC%8A%A4%ED%83%80%ED%81%AC%5D%20DB%20%EC%9D%B8%EB%8D%B1%EC%8A%A4%EB%8A%94%20%EC%99%9C%20%EB%B9%A0%EB%A5%B4%EA%B3%A0%2C%20%EC%96%B8%EC%A0%9C%20%EB%8A%90%EB%A0%A4%EC%A7%88%EA%B9%8C_%20-%20MySQL%20InnoDB%EC%9D%98%20B-Tree%20%EA%B5%AC%EC%A1%B0%EC%99%80%20UUID%20%EA%B8%B0%EB%B3%B8%20%ED%82%A4%20%EC%8B%A4%ED%97%98%EC%9C%BC%EB%A1%9C%20%EC%9D%B4%ED%95%B4%ED%95%98%EA%B8%B0.pdf"><img src="https://github.com/woowacourse-8th-cs-study/cs-study/raw/main/images/round1/%5B%EC%8A%A4%ED%83%80%ED%81%AC%5D%20DB%20%EC%9D%B8%EB%8D%B1%EC%8A%A4%EB%8A%94%20%EC%99%9C%20%EB%B9%A0%EB%A5%B4%EA%B3%A0%2C%20%EC%96%B8%EC%A0%9C%20%EB%8A%90%EB%A0%A4%EC%A7%88%EA%B9%8C_%20-%20MySQL%20InnoDB%EC%9D%98%20B-Tree%20%EA%B5%AC%EC%A1%B0%EC%99%80%20UUID%20%EA%B8%B0%EB%B3%B8%20%ED%82%A4%20%EC%8B%A4%ED%97%98%EC%9C%BC%EB%A1%9C%20%EC%9D%B4%ED%95%B4%ED%95%98%EA%B8%B0.png" width="100%"/></a></div> | **회차:** 1회차<br>**발표일:** 2026-06-01<br>**카테고리:** 💾 Database<br>**발표자:** [스타크](https://github.com/MODUGGAGI)<br>**발표 주제:** DB 인덱스는 왜 빠르고, 언제 느려질까? - MySQL InnoDB의 B-Tree 구조와 UUID 기본 키 실험으로 이해하기<br>**Discussion:** [바로가기](https://github.com/orgs/woowacourse-8th-cs-study/discussions/12)<br>**발표 영상:** 업로드 예정 |
+| 등록된 발표가 없습니다. | - |
 <!-- AUTO-GENERATED:TOPICS:END -->
 
 ---
