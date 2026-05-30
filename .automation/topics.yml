@@ -23,3 +23,15 @@ topics:
   discussion_id: D_kwDOSZb_7s4Amn0r
   discussion_number: 21
   discussion_url: https://github.com/orgs/woowacourse-8th-cs-study/discussions/21
+- round: 2
+  date: '2026-06-08'
+  presenter: 초록
+  category: Database
+  title: DB Connection은 왜 비쌀까? - DB, OS, Network의 관점에서 알아보기
+  youtube_url: ''
+  summary: ''
+  mission: ''
+  references: ''
+  discussion_id: D_kwDOSZb_7s4AmyM1
+  discussion_number: 25
+  discussion_url: https://github.com/orgs/woowacourse-8th-cs-study/discussions/25
