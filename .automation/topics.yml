@@ -35,3 +35,15 @@ topics:
   discussion_id: D_kwDOSZb_7s4AmyM1
   discussion_number: 25
   discussion_url: https://github.com/orgs/woowacourse-8th-cs-study/discussions/25
+- round: 2
+  date: '2026-06-08'
+  presenter: 러키
+  category: Database
+  title: 데이터 정합성은 어떻게 보장할 수 있을까?
+  youtube_url: ''
+  summary: ''
+  mission: ''
+  references: ''
+  discussion_id: D_kwDOSZb_7s4AmzOI
+  discussion_number: 28
+  discussion_url: https://github.com/orgs/woowacourse-8th-cs-study/discussions/28
