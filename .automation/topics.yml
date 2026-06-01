@@ -11,6 +11,8 @@ topics:
   discussion_id: D_kwDOSZb_7s4AmnvQ
   discussion_number: 19
   discussion_url: https://github.com/orgs/woowacourse-8th-cs-study/discussions/19
+  material_path: docs/round1/[스타크] DB 인덱스는 왜 빠르고, 언제 느려질까_ - MySQL InnoDB의 B-Tree 구조와 UUID 기본 키 실험으로 이해하기.pdf
+  thumbnail_path: images/round1/[스타크] DB 인덱스는 왜 빠르고, 언제 느려질까_ - MySQL InnoDB의 B-Tree 구조와 UUID 기본 키 실험으로 이해하기.png
 - round: 1
   date: '2026-06-01'
   presenter: 피즈
