@@ -44,6 +44,7 @@
 | 업로드 예정 | **회차:** 1회차<br>**발표일:** 2026-06-01<br>**카테고리:** 🌐 Network<br>**발표자:** [피즈](https://github.com/wontop02)<br>**발표 주제:** 구글에 "고양이"를 검색하면 무슨 일이 일어날까?<br>**Discussion:** [바로가기](https://github.com/orgs/woowacourse-8th-cs-study/discussions/21)<br>**발표 영상:** 업로드 예정 |
 | 업로드 예정 | **회차:** 2회차<br>**발표일:** 2026-06-08<br>**카테고리:** 💾 Database<br>**발표자:** [러키](https://github.com/Jiihyun)<br>**발표 주제:** 데이터 정합성은 어떻게 보장할 수 있을까?<br>**Discussion:** [바로가기](https://github.com/orgs/woowacourse-8th-cs-study/discussions/28)<br>**발표 영상:** 업로드 예정 |
 | 업로드 예정 | **회차:** 2회차<br>**발표일:** 2026-06-08<br>**카테고리:** 💾 Database<br>**발표자:** [초록](https://github.com/2Jaeheon)<br>**발표 주제:** DB Connection은 왜 비쌀까? - DB, OS, Network의 관점에서 알아보기<br>**Discussion:** [바로가기](https://github.com/orgs/woowacourse-8th-cs-study/discussions/25)<br>**발표 영상:** 업로드 예정 |
+| 업로드 예정 | **회차:** 3회차<br>**발표일:** 2026-06-15<br>**카테고리:** 💾 Database<br>**발표자:** [로지](https://github.com/Jihyun3478)<br>**발표 주제:** Connection Pool, 어떻게 동작하고 어떻게 설정해야 할까? - DBCP와 HikariCP의 차이부터 Pool 사이즈 실험까지<br>**Discussion:** [바로가기](https://github.com/orgs/woowacourse-8th-cs-study/discussions/32)<br>**발표 영상:** 업로드 예정 |
 <!-- AUTO-GENERATED:TOPICS:END -->
 
 ---

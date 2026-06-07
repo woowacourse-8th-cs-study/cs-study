@@ -49,3 +49,15 @@ topics:
   discussion_id: D_kwDOSZb_7s4AmzOI
   discussion_number: 28
   discussion_url: https://github.com/orgs/woowacourse-8th-cs-study/discussions/28
+- round: 3
+  date: '2026-06-15'
+  presenter: 로지
+  category: Database
+  title: Connection Pool, 어떻게 동작하고 어떻게 설정해야 할까? - DBCP와 HikariCP의 차이부터 Pool 사이즈 실험까지
+  youtube_url: ''
+  summary: ''
+  mission: ''
+  references: ''
+  discussion_id: D_kwDOSZb_7s4Am9j4
+  discussion_number: 32
+  discussion_url: https://github.com/orgs/woowacourse-8th-cs-study/discussions/32
