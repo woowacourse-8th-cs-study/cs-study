@@ -40,8 +40,8 @@ topics:
 - round: 2
   date: '2026-06-08'
   presenter: 러키
-  category: Database
-  title: 데이터 정합성은 어떻게 보장할 수 있을까?
+  category: Spring
+  title: Spring ApplicationContext 는  왜 테스트 성능에 영향을 줄까?
   youtube_url: ''
   summary: ''
   mission: ''
@@ -49,8 +49,8 @@ topics:
   discussion_id: D_kwDOSZb_7s4AmzOI
   discussion_number: 28
   discussion_url: https://github.com/orgs/woowacourse-8th-cs-study/discussions/28
-  material_path: docs/round2/[러키] 데이터 정합성은 어떻게 보장할 수 있을까_.pdf
-  thumbnail_path: images/round2/[러키] 데이터 정합성은 어떻게 보장할 수 있을까_.png
+  material_path: docs/round2/[러키] Spring ApplicationContext 는 왜 테스트 성능에 영향을 줄까?_.pdf
+  thumbnail_path: images/round2/[러키] Spring ApplicationContext 는 왜 테스트 성능에 영향을 줄까?_.png
 - round: 3
   date: '2026-06-15'
   presenter: 로지
