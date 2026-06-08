@@ -63,3 +63,15 @@ topics:
   discussion_id: D_kwDOSZb_7s4Am9j4
   discussion_number: 32
   discussion_url: https://github.com/orgs/woowacourse-8th-cs-study/discussions/32
+- round: 3
+  date: '2026-06-15'
+  presenter: 도우너
+  category: Network
+  title: 왜 HTTP로 충분하지 않고, HTTPS가 필요하지?
+  youtube_url: ''
+  summary: ''
+  mission: ''
+  references: ''
+  discussion_id: D_kwDOSZb_7s4Am_De
+  discussion_number: 36
+  discussion_url: https://github.com/orgs/woowacourse-8th-cs-study/discussions/36
