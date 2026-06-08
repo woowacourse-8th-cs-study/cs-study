@@ -40,6 +40,12 @@ jobs:
       - name: Install Python deps
         run: pip install pyyaml
 
+      - name: DEBUG
+        run: |
+          echo "title=${{ github.event.issue.title }}"
+          echo "assoc=${{ github.event.issue.author_association }}"
+          echo "sender=${{ github.event.issue.user.login }}"
+    
       - name: Process update issue
         id: process
         env:
