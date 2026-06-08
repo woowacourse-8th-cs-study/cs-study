@@ -11,7 +11,11 @@ permissions:
 
 jobs:
   process:
-    if: startsWith(github.event.issue.title, '[수정]')
+    if: 
+      (
+        startsWith(github.event.issue.title, '[수정]') ||
+        startsWith(github.event.issue.title, '[수정]')
+      )
     concurrency:
       group: topic-automation
       cancel-in-progress: false
