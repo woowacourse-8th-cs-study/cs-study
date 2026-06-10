@@ -15,7 +15,7 @@ from automation_common import (
     set_output,
     validate_url,
 )
-from generate_thumbnail import main as generate_thumbnail
+from generate_thumbnail import generate_topic_thumbnail
 from generate_readme import main as generate_readme
 
 
@@ -40,7 +40,7 @@ def main() -> int:
         topic["youtube_url"] = youtube_url
 
     save_data(data)
-    generate_thumbnail()
+    generate_topic_thumbnail(topic)
     generate_readme()
 
     set_output("round", str(topic["round"]))

@@ -29,24 +29,32 @@ def extract_first_page(pdf: Path, thumbnail: Path) -> None:
         fail(f"썸네일 파일이 생성되지 않았습니다: {thumbnail}")
 
 
+def generate_topic_thumbnail(topic: dict) -> bool:
+    material_path = topic.get("material_path")
+    thumbnail_path = topic.get("thumbnail_path")
+    if not material_path or not thumbnail_path:
+        return False
+    pdf = ROOT / material_path
+    thumbnail = ROOT / thumbnail_path
+    if not pdf.exists():
+        fail(f"PDF 파일을 찾을 수 없습니다: {material_path}")
+    if not needs_rebuild(thumbnail, pdf):
+        return False
+    extract_first_page(pdf, thumbnail)
+    return True
+
+
 def main() -> int:
     data = load_data()
     generated = 0
     skipped = 0
     for topic in data.get("topics") or []:
-        material_path = topic.get("material_path")
-        thumbnail_path = topic.get("thumbnail_path")
-        if not material_path or not thumbnail_path:
+        if not topic.get("material_path") or not topic.get("thumbnail_path"):
             continue
-        pdf = ROOT / material_path
-        thumbnail = ROOT / thumbnail_path
-        if not pdf.exists():
-            fail(f"PDF 파일을 찾을 수 없습니다: {material_path}")
-        if not needs_rebuild(thumbnail, pdf):
+        if generate_topic_thumbnail(topic):
+            generated += 1
+        else:
             skipped += 1
-            continue
-        extract_first_page(pdf, thumbnail)
-        generated += 1
     save_data(data)
     print(f"done. generated={generated} skipped={skipped}")
     return 0

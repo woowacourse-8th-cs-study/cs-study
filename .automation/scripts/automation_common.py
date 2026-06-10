@@ -165,12 +165,19 @@ def validate_url(value: str, label: str) -> str:
 def extract_pdf_url(text: str) -> str:
     if not text:
         return ""
-    match = re.search(r"\[([^\]]+\.pdf)\]\((https?://[^\)]+)\)", text, re.IGNORECASE)
-    return match.group(2) if match else ""
+    for url in re.findall(r"https?://[^\s)]+", text):
+        cleaned = url.rstrip(".,>")
+        decoded = urllib.parse.unquote(cleaned)
+        if ".pdf" in decoded.lower():
+            return cleaned
+    return ""
 
 
 def slugify_filename(value: str) -> str:
-    cleaned = re.sub(r'[\\/:*?"<>|]', "_", value).strip()
+    normalized = unicodedata.normalize("NFC", value)
+    cleaned = re.sub(r'[\\/:*?"<>|]', "_", normalized)
+    cleaned = re.sub(r"\s+", " ", cleaned).strip()
+    cleaned = cleaned.rstrip(" _")
     return unicodedata.normalize("NFC", cleaned) or "untitled"
 
 

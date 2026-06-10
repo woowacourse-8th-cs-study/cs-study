@@ -23,7 +23,7 @@ from automation_common import (
     validate_round,
     validate_url,
 )
-from generate_thumbnail import main as generate_thumbnail
+from generate_thumbnail import generate_topic_thumbnail
 from generate_readme import main as generate_readme
 
 
@@ -73,7 +73,7 @@ def main() -> int:
     )
     data["topics"].append(topic)
     save_data(data)
-    generate_thumbnail()
+    generate_topic_thumbnail(topic)
     generate_readme()
 
     set_output("round", str(round_no))
