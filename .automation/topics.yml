@@ -60,7 +60,7 @@ topics:
   presenter: 로지
   category: Database
   title: Connection Pool, 어떻게 동작하고 어떻게 설정해야 할까? - DBCP와 HikariCP의 차이부터 Pool 사이즈 실험까지
-  youtube_url: ''
+  youtube_url: https://www.youtube.com/watch?v=B4e16r3iihs
   summary: ''
   mission: ''
   references: ''
