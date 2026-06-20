@@ -83,3 +83,15 @@ topics:
   discussion_url: https://github.com/orgs/woowacourse-8th-cs-study/discussions/36
   material_path: docs/round3/[도우너] 왜 HTTP로 충분하지 않고, HTTPS가 필요하지.pdf
   thumbnail_path: images/round3/[도우너] 왜 HTTP로 충분하지 않고, HTTPS가 필요하지.png
+- round: 4
+  date: '2026-06-22'
+  presenter: 스타크
+  category: Network
+  title: HTTP는 왜 1.1에서 2, 3까지 진화했을까?
+  youtube_url: ''
+  summary: ''
+  mission: ''
+  references: ''
+  discussion_id: D_kwDOSZb_7s4AnQSc
+  discussion_number: 43
+  discussion_url: https://github.com/orgs/woowacourse-8th-cs-study/discussions/43
