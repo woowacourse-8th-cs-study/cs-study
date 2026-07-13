@@ -121,3 +121,17 @@ topics:
   discussion_id: D_kwDOSZb_7s4AnsLp
   discussion_number: 48
   discussion_url: https://github.com/orgs/woowacourse-8th-cs-study/discussions/48
+- round: 5
+  date: '2026-07-13'
+  presenter: 초록
+  category: Operating System
+  title: 메모리 관리
+  youtube_url: ''
+  summary: ''
+  mission: ''
+  references: ''
+  material_path: docs/round5/[초록] 메모리 관리.pdf
+  thumbnail_path: images/round5/[초록] 메모리 관리.png
+  discussion_id: D_kwDOSZb_7s4AnvKA
+  discussion_number: 50
+  discussion_url: https://github.com/orgs/woowacourse-8th-cs-study/discussions/50
