@@ -109,6 +109,8 @@ topics:
   discussion_id: D_kwDOSZb_7s4Ano36
   discussion_number: 46
   discussion_url: https://github.com/orgs/woowacourse-8th-cs-study/discussions/46
+  material_path: docs/round5/[러키] 프로세스와 스레드, 왜 나뉘게 되었을까.pdf
+  thumbnail_path: images/round5/[러키] 프로세스와 스레드, 왜 나뉘게 되었을까.png
 - round: 5
   date: '2026-07-13'
   presenter: 피즈
